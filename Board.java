@@ -27,7 +27,7 @@ public class Board extends JPanel implements ActionListener
 	//
 	private final int ALL_DOTS = 900;
 	//set delay to 40 ms
-	private final int RAND_POS = 49;
+	private final int RAND_POS = 46;
 	private final int DELAY = 40;
 	//
 	private int x[] = new int[ALL_DOTS];
@@ -58,7 +58,7 @@ public class Board extends JPanel implements ActionListener
 		ImageIcon iid =new ImageIcon(this.getClass().getResource("dot.png"));
 		ball = iid.getImage();
 		//call image 'apple.png' as the objective
-		ImageIcon iia =new ImageIcon(this.getClass().getResource("dot.png"));
+		ImageIcon iia =new ImageIcon(this.getClass().getResource("apple.png"));
 		apple = iia.getImage();
 		//call image 'head.png' as the snake head
 		ImageIcon iih =new ImageIcon(this.getClass().getResource("head.png"));
@@ -72,7 +72,7 @@ public class Board extends JPanel implements ActionListener
 	public void initGame()
 	{
 		//sets starting number of dots on snake to 3
-		dots = 3;
+		dots = 4;
 		
 		for (int z= 0; z < dots; z++)
 		{
@@ -115,6 +115,7 @@ public class Board extends JPanel implements ActionListener
 	
 	public void gameOver(Graphics g)
 	{
+		/*
 		String msg = "Game Over";
 		//set font of 'Game Over' text
 		Font small = new Font("Helvetica", Font.BOLD, 18);
@@ -123,6 +124,15 @@ public class Board extends JPanel implements ActionListener
 		g.setColor(Color.WHITE);
 		g.setFont(small);
 		g.drawString(msg, (WIDTH - metr.stringWidth(msg)) / 2, HEIGHT / 2);
+		*/
+		
+		//print score
+		String score = ("Score: " + (dots - 4) );
+		Font medium = new Font("Helvetica", Font.BOLD, 24);
+		FontMetrics metr_m = this.getFontMetrics(medium);
+		g.setColor(Color.WHITE);
+		g.setFont(medium);
+		g.drawString(score, (WIDTH - metr_m.stringWidth(score)) / 2, HEIGHT / 2);
 	}
 	
 	
@@ -178,7 +188,7 @@ public class Board extends JPanel implements ActionListener
 		
 		if (y[0] > HEIGHT)
 		{
-			inGame = true;
+			inGame = false;
 		}
 		
 		if (y[0] < 0)
